@@ -1,0 +1,70 @@
+{
+  "name": "nanopore_htt_filter_v1.0",
+  "title": "nanopore_htt_filter_v1.0",
+  "summary": "v1.0 Takes BAM with reads aligned to HTT and filters out any reads that don't cover expansion region +-500bp",
+  "dxapi": "1.0.0",
+  "version": "1.0",
+  "inputSpec": [
+    {
+      "name": "bam",
+      "label": "BAM",
+      "class": "file",
+      "optional": false,
+      "patterns": [
+        "*.bam"
+      ],
+      "help": "BAM file"
+    },
+    {
+      "name": "bai",
+      "label": "BAM index",
+      "class": "file",
+      "patterns": [
+        "*.bam.bai"
+      ],
+      "help": "Sorted BAM index file"
+    }
+  ],
+  "outputSpec": [
+    {
+      "name": "filteredbam",
+      "label": "Filtered BAM",
+      "class": "file",
+      "patterns": [
+        "*.bam"
+      ],
+      "help": "Sorted BAM file"
+    },
+    {
+      "name": "filteredbai",
+      "label": "Filtered BAM index",
+      "class": "file",
+      "patterns": [
+        "*.bam.bai"
+      ],
+      "help": "Sorted BAM index file"
+    }
+  ],
+  "runSpec": {
+    "assetDepends": [
+      {
+        "project": "project-ByfFPz00jy1fk6PjpZ95F27J",
+        "folder": "/Apps/Docker",
+        "name": "quay.io/biocontainers/samtools:1.5--2",
+        "version": "0.0.1"
+      }
+    ],
+    "interpreter": "bash",
+    "file": "src/nanopore_htt_filter.sh",
+    "systemRequirements": {
+      "*": {
+        "instanceType": "mem1_ssd1_x2"
+      }
+    },
+    "distribution": "Ubuntu",
+    "release": "14.04"
+  },
+  "access": {
+    "allProjects": "VIEW"   
+  }
+}
