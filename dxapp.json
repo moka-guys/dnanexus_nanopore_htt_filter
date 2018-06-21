@@ -3,13 +3,14 @@
   "title": "nanopore_htt_filter_v1.0",
   "summary": "v1.0 Takes BAM with reads aligned to HTT and filters out any reads that don't cover expansion region +-500bp",
   "dxapi": "1.0.0",
-  "version": "1.0",
+  "properties": {
+    "github release": "v1.0"
+  },
   "inputSpec": [
     {
       "name": "bam",
       "label": "BAM",
       "class": "file",
-      "optional": false,
       "patterns": [
         "*.bam"
       ],
@@ -54,10 +55,17 @@
         "version": "0.0.1"
       }
     ],
+    "systemRequirementsByRegion": {
+      "aws:us-east-1": {
+        "main": {
+          "instanceType": "mem1_ssd1_x2"
+        }
+      }
+    },
     "interpreter": "bash",
     "file": "src/nanopore_htt_filter.sh",
     "systemRequirements": {
-      "*": {
+      "main": {
         "instanceType": "mem1_ssd1_x2"
       }
     },
